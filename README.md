@@ -66,3 +66,117 @@ const message = invoice > stock ? 'На складе недостаточно т
 // 'На складе недостаточно товаров!'  
 ```
 
+## Задача 1-3
+
+#### Использование if else
+
+Напиши скрипт имитирующий авторизацию администратора в панели управления.
+
+Есть переменная  `message`  в которую надо будет записать одно из трех сообщений о результате:
+
+1.  `const CANCELED_BY_USER = 'Отменено пользователем!'`
+2.  `const ACCESS_IS_ALLOWED = 'Добро пожаловать!'`
+3.  `const ACCESS_DENIED = 'Доступ запрещен, неверный пароль!`
+
+Выбор одного из трех значений зависит от того, какое значение будет у переменной  `userPassword`  (данные, которые может передать пользователь). Возможны такие варианты:
+
+1.  `const ADMIN_PASSWORD = 'jqueryismyjam'`. При таком значении  `userPassword`  переменной  `message`  следует присвоить  `ACCESS_IS_ALLOWED`.
+2.  `null`. При таком значении  `userPassword`  переменной  `message`  следует присвоить  `CANCELED_BY_USER`.
+3.  Любая строка, кроме  `ADMIN_PASSWORD`. При таком значении  `userPassword`  переменной  `message`  следует присвоить  `ACCESS_DENIED`.
+
+Используйте  `if else if else`  для написания скрипта.
+
+```javascript
+const userPassword = 'jqueryismyjam';
+
+const ADMIN_PASSWORD = 'jqueryismyjam';
+
+const CANCELED_BY_USER = 'Отменено пользователем!';
+const ACCESS_IS_ALLOWED = 'Добро пожаловать!';
+const ACCESS_DENIED = 'Доступ запрещен, неверный пароль!';
+let message;
+
+// Write code under this line
+if (ADMIN_PASSWORD === userPassword) {
+  message = ACCESS_IS_ALLOWED;
+} else if (userPassword === null) {
+  message = CANCELED_BY_USER;
+} else {
+  message = ACCESS_DENIED;
+}
+
+// console.log(message);
+
+//если userPassword равно 'jqueryismyjam'
+// то значение message будет равно
+// 'Добро пожаловать!'
+
+//если userPassword равно  null
+// то значение message будет равно
+// 'Отменено пользователем!'
+
+//если userPassword равно '123'
+// то значение message будет равно
+// 'Доступ запрещен, неверный пароль!'
+
+```
+
+
+## Задача 1-4
+
+#### Использование if else и арифметических операторов
+
+Напиши скрипт имитирующий вывод сообщений о списании средств на покупку товара.
+
+Переменная  `credits`  хранит количество средств -  `23580`  кредитов.
+
+Единица товара (дроида) стоит  `3000`  кредитов за штуку и это значение хранится в переменной  `pricePerDroid`.
+
+Переменная  `orderPieces`  принимает значения  `null`  (отказ от покупок) и целое положительное число (количество единиц товара).
+
+Переменная  `message`  будет выводить сообщение. В эту переменную надо будет записать одно из трех сообщений о результате:
+
+1.  `const CANCELED_BY_USER = 'Отменено пользователем!'`
+2.  `Вы купили ${} дроидов, на счету осталось ${} кредитов`
+3.  `const ACCESS_DENIED = 'Недостаточно средств на счету!'`
+
+-   Используйте вспомогательную переменную  `totalPrice`, которая принимает рассчитанную общую цену заказа.
+-   Используйте вспомогательную переменную  `balanceCredit`, которая принимает разницу между  `credits`  и  `totalPrice`.
+-   А также используйте  `if else`  для выбора значений переменной  `message`.
+
+```javascript
+const orderPieces = 4;
+
+const credits = 23580;
+const pricePerDroid = 3000;
+const CANCELED_BY_USER = 'Отменено пользователем!';
+const ACCESS_DENIED = 'Недостаточно средств на счету!';
+
+let totalPrice = orderPieces * pricePerDroid; // Write code on this line
+let balanceCredit = credits - totalPrice; // Write code on this line
+let message;
+
+// Write code under this line
+if (orderPieces === null) {
+  message = CANCELED_BY_USER;
+} else if (totalPrice > credits) {
+  message = ACCESS_DENIED;
+} else {
+  message = `Вы купили ${orderPieces} дроидов, на счету осталось ${balanceCredit} кредитов`;
+}
+
+// console.log(message);
+
+//если orderPieces равно 4
+// то значение message будет равно
+// 'Вы купили 4 дроидов, на счету осталось 11580 кредитов'
+
+//если orderPieces равно null
+// то значение message будет равно
+// 'Отменено пользователем!'
+
+//если orderPieces равно 10
+// то значение message будет равно
+// 'Недостаточно средств на счету!'
+
+```
